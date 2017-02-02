@@ -1,0 +1,3 @@
+[submodule "mbtiles/pyMbTiles"]
+	path = mbtiles/pyMbTiles
+	url = https://github.com/TimSC/pyMbTiles.git
