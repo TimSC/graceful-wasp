@@ -9,12 +9,21 @@ def index(request):
 	return HttpResponse("foobar")
 
 def tiles(request, tileZoom, tileColumn, tileRow):
-	coast = MBTiles.MBTiles("coast.mbtiles")
-	tile = coast.GetTile(tileZoom, tileColumn, tileRow)
+	coastTiles = MBTiles.MBTiles("coast.mbtiles")
+	coastTile = coastTiles.GetTile(tileZoom, tileColumn, tileRow)
 
+	mapTiles = MBTiles.MBTiles("map.mbtiles")
+	mapTile = mapTiles.GetTile(tileZoom, tileColumn, tileRow)
+
+	#Merge these
 	#uncompressed = zlib.decompress(tile, 16+zlib.MAX_WBITS)
-	response = HttpResponse(tile, content_type='application/vnd.mapbox-vector-tile')
+
+
+
+	
+	#Send response
+	response = HttpResponse(mapTile, content_type='application/vnd.mapbox-vector-tile')
 	response['Content-Encoding'] = 'gzip'
-	response['Content-Length'] = str(len(tile))
+	response['Content-Length'] = str(len(mapTile))
 	return response
 
