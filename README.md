@@ -11,3 +11,4 @@ To configure nginx, uWSGI, systemd: https://gist.github.com/TimSC/0193fa92d7fe5b
 * python manage.py collectstatic
 * python manage.py createsuperuser
 
+Add "add_header Access-Control-Allow-Origin *;" possibly to nginx configuration: http://serverfault.com/a/176729/375337
