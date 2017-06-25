@@ -19,7 +19,7 @@ def tiles(request, tileZoom, tileColumn, tileRow):
 
 	mapTiles = MBTiles.MBTiles("map.mbtiles")
 	try:
-		mapTile = mapTiles.GetTile(tileZoom, tileColumn, tileRow)
+		mapTile = mapTiles.GetTile(tileZoom, tileColumn, (2 ** tileZoom) - tileRow - 1)
 		mapUncompressed = zlib.decompress(mapTile, 16+zlib.MAX_WBITS)
 	except RuntimeError:
 		mapUncompressed = None
